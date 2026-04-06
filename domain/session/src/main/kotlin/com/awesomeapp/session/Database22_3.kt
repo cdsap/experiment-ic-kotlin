@@ -1,0 +1,9 @@
+package com.awesomeapp.session
+
+import androidx.room.Database
+import androidx.room.RoomDatabase
+
+@Database(entities = [Entity22_1::class], version = 1, exportSchema = false)
+abstract class Database22_3 : RoomDatabase() {
+    abstract fun dao(): Dao22_4
+}
