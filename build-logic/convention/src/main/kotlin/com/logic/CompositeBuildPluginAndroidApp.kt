@@ -52,7 +52,7 @@ class CompositeBuildPluginAndroidApp : Plugin<Project> {
                 toolchain.languageVersion.set(org.gradle.jvm.toolchain.JavaLanguageVersion.of(23))
             }
             target.tasks.withType(JavaCompile::class.java).configureEach {
-            options.isIncremental = false
+            options.isIncremental = true
             }
             // Hilt missing Java Toolchain support https://github.com/google/dagger/issues/4623
 val toolchains = target.extensions.getByType(JavaToolchainService::class.java)

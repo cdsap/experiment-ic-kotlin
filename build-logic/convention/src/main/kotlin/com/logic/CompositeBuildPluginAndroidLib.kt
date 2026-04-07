@@ -50,7 +50,7 @@ class CompositeBuildPluginAndroidLib : Plugin<Project> {
                 toolchain.languageVersion.set(org.gradle.jvm.toolchain.JavaLanguageVersion.of(23))
             }
             target.tasks.withType(JavaCompile::class.java).configureEach {
-            options.isIncremental = false
+            options.isIncremental = true
             }
 
             dependencies {
