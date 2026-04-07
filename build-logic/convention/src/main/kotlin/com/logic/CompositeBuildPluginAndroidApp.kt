@@ -9,7 +9,9 @@ import org.gradle.jvm.toolchain.JavaLanguageVersion
 import org.gradle.jvm.toolchain.JavaToolchainService
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.withType
+import org.gradle.kotlin.dsl.configureEach
 import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
+ 
 
 class CompositeBuildPluginAndroidApp : Plugin<Project> {
     override fun apply(target: Project) {
@@ -48,6 +50,9 @@ class CompositeBuildPluginAndroidApp : Plugin<Project> {
             }
             target.extensions.getByType(org.gradle.api.plugins.JavaPluginExtension::class.java).apply {
                 toolchain.languageVersion.set(org.gradle.jvm.toolchain.JavaLanguageVersion.of(23))
+            }
+            target.tasks.withType(JavaCompile::class.java).configureEach {
+            options.isIncremental = false
             }
             // Hilt missing Java Toolchain support https://github.com/google/dagger/issues/4623
 val toolchains = target.extensions.getByType(JavaToolchainService::class.java)

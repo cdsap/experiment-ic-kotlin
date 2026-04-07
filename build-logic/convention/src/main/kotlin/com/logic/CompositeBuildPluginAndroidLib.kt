@@ -4,8 +4,10 @@ import org.gradle.api.Plugin
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
+import org.gradle.kotlin.dsl.configureEach
 import org.gradle.kotlin.dsl.dependencies
 import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
+import org.gradle.api.tasks.compile.JavaCompile
 
 class CompositeBuildPluginAndroidLib : Plugin<Project> {
     override fun apply(target: Project) {
@@ -46,6 +48,9 @@ class CompositeBuildPluginAndroidLib : Plugin<Project> {
 
             target.extensions.getByType(org.gradle.api.plugins.JavaPluginExtension::class.java).apply {
                 toolchain.languageVersion.set(org.gradle.jvm.toolchain.JavaLanguageVersion.of(23))
+            }
+            target.tasks.withType(JavaCompile::class.java).configureEach {
+            options.isIncremental = false
             }
 
             dependencies {
