@@ -81,7 +81,7 @@ public class EventBus5441 {
     public <E extends Event> Subscription<E> subscribe(Class<E> eventType, Consumer<E> handler, int priority, Predicate<E> filter) {
         Subscription<E> sub = new Subscription<>(eventType, handler, priority, filter);
         subscriptions.add(sub);
-        subscriptions.sort(Comparator.comparingInt(Subscription::getPriority).reversed());
+        subscriptions.sort((a, b) -> Integer.compare(b.getPriority(), a.getPriority()));
         return sub;
     }
 
