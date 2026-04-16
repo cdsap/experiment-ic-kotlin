@@ -7,5 +7,5 @@ plugins {
     alias(libs.plugins.kotlin.ksp) apply false
     alias(libs.plugins.hilt) apply false
     id("com.autonomousapps.dependency-analysis") version "2.19.0" apply true
-
+  id("io.github.cdsap.kotlinprocess") version "0.3.0"
 }
